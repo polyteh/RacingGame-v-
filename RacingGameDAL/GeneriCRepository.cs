@@ -8,15 +8,31 @@ using System.Threading.Tasks;
 
 namespace RacingGameDAL
 {
-    public class GeneriCRepository<T> : IGenericRepository<T> where T : class, IEntity, IName
+    public class GenericRepository<T> : IGenericRepository<T> where T : class, IEntity, IName
     {
         protected readonly DbContext _context;
         protected readonly DbSet<T> _dbSet;
-        public GeneriCRepository(DbContext curContext)
+        public GenericRepository(DbContext curContext)
         {
             _context = curContext;
             _dbSet = _context.Set<T>();
         }
+
+        public async Task<bool> AddAsync(T entity)
+        {
+            try
+            {
+                _dbSet.Add(entity);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+
         public async Task<IEnumerable<T>> GetAllAsync()
         {
             var itemsAsync = await _dbSet.ToListAsync();

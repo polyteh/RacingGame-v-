@@ -9,5 +9,6 @@ namespace RacingGameBLL.Interfaces
     {
         Task<IEnumerable<DALModel>> GetAllAsync();
         Task<DALModel> GetByIdAsync(int id);
+        Task<bool> AddAsync(DALModel entity);
     }
 }

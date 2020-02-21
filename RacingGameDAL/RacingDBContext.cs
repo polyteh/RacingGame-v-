@@ -8,9 +8,14 @@ namespace RacingGameDAL
     public class RacingDBContext : DbContext
     {
         public RacingDBContext(DbContextOptions<RacingDBContext> options) : base(options)
-        {
-
+        { 
         }
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(@"Data Source =.\IPSQLSERVER; Initial Catalog = RacingGame; Integrated Security = True");
+        //}
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             new ComponentTypeMap(modelBuilder.Entity<ComponentType>());

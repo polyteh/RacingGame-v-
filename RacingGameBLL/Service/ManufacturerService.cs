@@ -6,6 +6,7 @@ using RacingGameDAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace RacingGameBLL.Service
 {
@@ -20,5 +21,16 @@ namespace RacingGameBLL.Service
         {
             return _mapper.Map<IEnumerable<ManufacturerBLL>>(dalModels);
         }
+
+        public override ManufacturerBLL Map(Manufacturer dalModels)
+        {
+            return _mapper.Map<ManufacturerBLL>(dalModels);
+        }
+
+        public override Manufacturer Map(ManufacturerBLL bllModel)
+        {
+            return _mapper.Map<Manufacturer>(bllModel);
+        }
     }
+
 }

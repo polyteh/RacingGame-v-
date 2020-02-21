@@ -15,6 +15,8 @@ using RacingGameBLL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using RacingGameDAL.Interfaces;
 using RacingGameBLL.Service;
+using AutoMapper;
+using RacingWebApi.Config;
 
 namespace RacingWebApi
 {
@@ -31,9 +33,13 @@ namespace RacingWebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            //services.AddDbContext<RacingDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("RacingGame")));
-           // services.AddTransient(typeof(IGenericRepository<>), typeof(GeneriCRepository<>));
-           // services.AddTransient<IManufacturerService, ManufacturerService>();
+
+            //add custom services for DAL and BLL
+            services.AddDALServices(Configuration);
+            services.AddBLLServices();
+
+            //add seervices for automapper
+            services.AddAutomapperServices();
 
         }
 

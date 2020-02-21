@@ -24,11 +24,21 @@ namespace RacingGameBLL.Service
             return Map(listOfDAL);
         }
 
-        public Task<BLLModel> GetByIdAsync(int id)
+        public async Task<BLLModel> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var itemByIdDAL = await _repository.GetByIdAsync(id);
+            return Map(itemByIdDAL);
         }
 
         public abstract IEnumerable<BLLModel> Map(IEnumerable<DALModel> dalModels);
+        public abstract BLLModel Map(DALModel dalModel);
+        public abstract DALModel Map(BLLModel bllModel);
+
+        public async Task<bool> AddAsync(BLLModel entity)
+        {
+            var entityDAL = Map(entity);
+            bool isItemAdded = await _repository.AddAsync(entityDAL);
+            return isItemAdded;
+        }
     }
 }

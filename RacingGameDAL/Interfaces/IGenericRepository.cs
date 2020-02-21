@@ -10,5 +10,6 @@ namespace RacingGameDAL.Interfaces
     {
         Task<IEnumerable<T>> GetAllAsync();
         Task<T> GetByIdAsync(int id);
+        Task<bool> AddAsync(T entity);
     }
 }
